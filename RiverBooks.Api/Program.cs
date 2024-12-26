@@ -1,28 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using FastEndpoints;
+using FastEndpoints.Security;
+using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using RiverBooks.Books;
+using RiverBooks.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddBookServices(builder.Configuration);
-builder.Services.AddFastEndpoints();
+builder.Services
+    .AddFastEndpoints()
+    .SwaggerDocument()
+    .AddAuthenticationJwtBearer(options => options.SigningKey = builder.Configuration["Auth:JwtSecret"])
+    .AddAuthorization();
+
+// Register module services
+var mediatorAssemblies = new List<Assembly>();
+builder.Services.AddBookServices(builder.Configuration, mediatorAssemblies);
+builder.Services.AddUserServices(builder.Configuration, mediatorAssemblies);
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatorAssemblies.ToArray()));
+
 
 var app = builder.Build();
 
-app.UseFastEndpoints();
+app.UseAuthentication().UseAuthorization();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
+app.UseFastEndpoints().UseSwaggerGen();
 
 app.Run();

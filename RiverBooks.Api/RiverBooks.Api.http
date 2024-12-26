@@ -1,4 +1,4 @@
-@HostAddress = http://localhost:5041
+@HostAddress = https://localhost:7107
 
 GET {{HostAddress}}/books
 Accept: application/json
@@ -33,3 +33,38 @@ Accept: application/json
 ###
 DELETE {{HostAddress}}/books/dd8a387b-99ca-4d0c-b571-8666b20a8e8f
 Accept: application/json
+
+###
+
+# Users Module
+
+POST {{HostAddress}}/users/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "brad@test.com",
+  "password": "Password@123"
+}
+
+###
+POST {{HostAddress}}/users/login
+Content-Type: application/json
+
+{
+  "email": "brad@test.com",
+  "password": "Password@123"
+}
+
+
+###
+@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUyNDEzODIsImV4cCI6MTczNTI0NDk4MiwibmJmIjoxNzM1MjQxMzgyfQ.XEUOyDyOmHx1dhHrSDTgjRTloZqRArHbdopDrCyg7tw
+
+POST {{HostAddress}}/cart
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "bookId": "7848beab-1281-4e01-9c1a-fd0c0576f2dc",
+  "quantity": 1
+}
