@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <InvariantGlobalization>false</InvariantGlobalization>
+    </PropertyGroup>
+</Project>

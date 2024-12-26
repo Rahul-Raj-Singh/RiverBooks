@@ -1,0 +1,35 @@
+@HostAddress = http://localhost:5041
+
+GET {{HostAddress}}/books
+Accept: application/json
+
+###
+GET {{HostAddress}}/books/bb6e9722-3d4c-4747-afa0-67307080641b
+Accept: application/json
+
+###
+POST {{HostAddress}}/books
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Ghost of Tsushima",
+  "author": "Sucker Punch",
+  "price": 14.99
+}
+
+###
+PUT {{HostAddress}}/books
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "dd8a387b-99ca-4d0c-b571-8666b20a8e8f",
+  "title": "Ghost of Tsushima",
+  "author": "Sucker Punch",
+  "price": 13.99
+}
+
+###
+DELETE {{HostAddress}}/books/dd8a387b-99ca-4d0c-b571-8666b20a8e8f
+Accept: application/json
