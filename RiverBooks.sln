@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books", "RiverBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Users", "RiverBooks.Users\RiverBooks.Users.csproj", "{CEECE66B-028B-4B80-A40A-3F9E90A7E41A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Contracts", "RiverBooks.Books.Contracts\RiverBooks.Books.Contracts.csproj", "{AD3B103A-82BF-4EBF-A7A3-889E9F30DFB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{CEECE66B-028B-4B80-A40A-3F9E90A7E41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEECE66B-028B-4B80-A40A-3F9E90A7E41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEECE66B-028B-4B80-A40A-3F9E90A7E41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3B103A-82BF-4EBF-A7A3-889E9F30DFB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3B103A-82BF-4EBF-A7A3-889E9F30DFB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3B103A-82BF-4EBF-A7A3-889E9F30DFB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3B103A-82BF-4EBF-A7A3-889E9F30DFB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

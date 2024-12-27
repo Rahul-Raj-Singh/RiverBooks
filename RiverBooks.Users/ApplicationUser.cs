@@ -15,7 +15,9 @@ internal class ApplicationUser : IdentityUser
 
         if (existingItem is not null)
         {
-            existingItem.UpdateQuantity(cartItem.Quantity);
+            existingItem.UpdateQuantity(cartItem.Quantity + existingItem.Quantity);
+            existingItem.UpdateDescription(cartItem.Description);
+            existingItem.UpdateUnitPrice(cartItem.UnitPrice);
             return;
         }
         

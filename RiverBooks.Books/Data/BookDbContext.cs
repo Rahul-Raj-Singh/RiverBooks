@@ -20,6 +20,7 @@ internal class BookDbContext : DbContext
         {
             x.ToTable("Book");
             x.HasKey(y => y.Id);
+            x.Property(y => y.Id).ValueGeneratedNever();
             x.Property(y => y.Title).HasMaxLength(200);
             x.Property(y => y.Author).HasMaxLength(200);
         });

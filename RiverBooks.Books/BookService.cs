@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ardalis.Result;
 using Microsoft.Extensions.Logging;
 using RiverBooks.Books.Data;
 
@@ -12,10 +13,10 @@ internal interface IBookService
     Task<BookDto> GetBookByIdAsync(Guid id);
     Task<List<BookDto>> GetAllBooksAsync();
     Task<BookDto> CreateBookAsync(BookDto bookDto);
-    Task DeleteBookAsync(Guid id);
-    Task UpdateBookPriceAsync(BookDto bookDto);
+    Task<Result> DeleteBookAsync(Guid id);
+    Task<Result> UpdateBookPriceAsync(BookDto bookDto);
 }
-internal class BookService(IBookRepository repository, ILogger<BookService> logger) : IBookService
+internal class BookService(IBookRepository repository) : IBookService
 {
     public async Task<BookDto> GetBookByIdAsync(Guid id)
     {
@@ -44,32 +45,30 @@ internal class BookService(IBookRepository repository, ILogger<BookService> logg
         return bookDto;
     }
 
-    public async Task UpdateBookPriceAsync(BookDto bookDto)
+    public async Task<Result> UpdateBookPriceAsync(BookDto bookDto)
     {
         var existingBook = await repository.GetByIdAsync(bookDto.Id);
 
         if (existingBook is null)
-        {
-            logger.LogWarning("Cannot find book with id: {id}", bookDto.Id);
-            return;
-        }
+            return Result.NotFound("Cannot find book with id: " + bookDto.Id);
         
         existingBook.UpdateBookPrice(bookDto.Price);
         await repository.SaveChangesAsync();
+        
+        return Result.Success();
     }
     
-    public async Task DeleteBookAsync(Guid id)
+    public async Task<Result> DeleteBookAsync(Guid id)
     {
         var existingBook = await repository.GetByIdAsync(id);
 
         if (existingBook is null)
-        {
-            logger.LogWarning("Cannot find book with id: {id}", id);
-            return;
-        }
+            return Result.NotFound("Cannot find book with id: " + id);
 
         await repository.DeleteAsync(existingBook);
         await repository.SaveChangesAsync();
+        
+        return Result.Success();
     }
 
 }

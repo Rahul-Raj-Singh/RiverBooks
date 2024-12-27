@@ -16,9 +16,12 @@ internal class UpdateBookPriceEndpoint(IBookService bookService) : Endpoint<Upda
 
     public override async Task HandleAsync(UpdateBookPriceRequest req, CancellationToken ct)
     {
-        await bookService.UpdateBookPriceAsync(new BookDto {Id = req.Id, Price = req.Price});
+        var result = await bookService.UpdateBookPriceAsync(new BookDto {Id = req.Id, Price = req.Price});
         
-        await SendNoContentAsync();
+        if (result.IsSuccess) 
+            await SendOkAsync(ct);
+        else
+            await SendNotFoundAsync(ct);
     }
 }
 

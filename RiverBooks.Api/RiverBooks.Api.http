@@ -58,13 +58,18 @@ Content-Type: application/json
 
 
 ###
-@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUyNDEzODIsImV4cCI6MTczNTI0NDk4MiwibmJmIjoxNzM1MjQxMzgyfQ.XEUOyDyOmHx1dhHrSDTgjRTloZqRArHbdopDrCyg7tw
+@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUyODc5MjEsImV4cCI6MTczNTI5MTUyMSwibmJmIjoxNzM1Mjg3OTIxfQ.7MBEO7HWRFdB-rufRyAyAGxjgQHvTW4MjEs_5nkpeeA
 
 POST {{HostAddress}}/cart
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "bookId": "7848beab-1281-4e01-9c1a-fd0c0576f2dc",
+  "bookId": "f36d8e43-a34d-493d-a43c-d3af4f458944",
   "quantity": 1
 }
+
+###
+GET {{HostAddress}}/cart
+Authorization: Bearer {{token}}
+Accept: application/json

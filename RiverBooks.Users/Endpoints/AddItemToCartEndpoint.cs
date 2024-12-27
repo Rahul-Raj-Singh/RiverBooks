@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ internal class AddItemToCartEndpoint(IMediator mediator) : Endpoint<AddItemToCar
 
         if (result.Status == ResultStatus.Unauthorized)
             await SendUnauthorizedAsync(ct);
+        else if (result.Status == ResultStatus.NotFound)
+            await SendAsync(result.Errors, (int)HttpStatusCode.NotFound, ct);
         else
             await SendOkAsync(ct);
     }
