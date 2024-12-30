@@ -17,6 +17,9 @@ public static class OrderProcessingServiceExtensions
         
         services.AddScoped<IOrderRepository, EfOrderRepository>();
         
+        services.AddScoped<RedisOrderAddressCache>();
+        services.AddScoped<IOrderAddressCache, ReadThroughOrderAddressCache>();
+        
         mediatorAssemblies.Add(typeof(OrderProcessingServiceExtensions).Assembly);
         
         return services;

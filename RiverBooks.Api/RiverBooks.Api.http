@@ -58,7 +58,7 @@ Content-Type: application/json
 
 
 ###
-@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUzMzU0OTYsImV4cCI6MTczNTMzOTA5NiwibmJmIjoxNzM1MzM1NDk2fQ.i455N-KyCPVP9EkIRHsmxCKY5IgOHOB8T6TzUdEX9Mo
+@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzU1NzMzMDMsImV4cCI6MTczNTU3NjkwMywibmJmIjoxNzM1NTczMzAzfQ.zSZPmuzcvxUdM6V8be1lvAKKdOHpzjQoEXwfYB7D-Ng
 
 POST {{HostAddress}}/cart
 Authorization: Bearer {{token}}
@@ -88,6 +88,20 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "billingAddressId": "a36d8e43-a34d-493d-a43c-d3af4f458944",
-  "shippingAddressId": "b36d8e43-a34d-493d-a43c-d3af4f458944"
+  "billingAddressId": "d07552c9-7419-43a5-99ff-b51eb09b1c14",
+  "shippingAddressId": "d07552c9-7419-43a5-99ff-b51eb09b1c14"
+}
+
+###
+
+POST {{HostAddress}}/user/addresses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "street1": "Billing Street",
+  "city": "NYC",
+  "state": "NY",
+  "country": "US",
+  "postalCode": "1234"
 }

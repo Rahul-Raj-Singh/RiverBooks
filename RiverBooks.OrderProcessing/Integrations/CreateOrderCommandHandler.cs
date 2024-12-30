@@ -9,7 +9,7 @@ using RiverBooks.OrderProcessing.Data;
 
 namespace RiverBooks.OrderProcessing.Integrations;
 
-internal class CreateOrderCommandHandler(IOrderRepository repository) 
+internal class CreateOrderCommandHandler(IOrderRepository repository, IOrderAddressCache addressCache) 
     : IRequestHandler<CreateOrderCommand, Result<CreateOrderResponse>>
 {
     public async Task<Result<CreateOrderResponse>> Handle(CreateOrderCommand req, CancellationToken ct)
@@ -21,9 +21,10 @@ internal class CreateOrderCommandHandler(IOrderRepository repository)
             x.Description, 
             x.UnitPrice)).ToList();
         
-        var dummyAddress = new Address("Jane Street", "","NYC", "NY", "US", "12345");
+        var billingAddress = await addressCache.GetAddressByIdAsync(req.BillingAddressId);
+        var shippingAddress = await addressCache.GetAddressByIdAsync(req.ShippingAddressId);
         
-        var newOrder = Order.Create(Guid.NewGuid(), req.UserId, dummyAddress, dummyAddress, orderItems);
+        var newOrder = Order.Create(Guid.NewGuid(), req.UserId, shippingAddress, billingAddress, orderItems);
         
         repository.AddOrder(newOrder);
 

@@ -7,6 +7,7 @@ using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using RiverBooks.Books;
+using RiverBooks.Common;
 using RiverBooks.OrderProcessing;
 using RiverBooks.Users;
 
@@ -25,6 +26,7 @@ builder.Services.AddUserServices(builder.Configuration, mediatorAssemblies);
 builder.Services.AddOrderProcessingServices(builder.Configuration, mediatorAssemblies);
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatorAssemblies.ToArray()));
+builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
 
 var app = builder.Build();
