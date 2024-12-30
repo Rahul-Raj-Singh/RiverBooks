@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ internal interface IApplicationUserRepository
 {
     Task<ApplicationUser> GetUserWithCartByEmailAsync(string email);
     Task SaveChangesAsync();
+    void DeleteCartItems(IEnumerable<CartItem> cartItems);
 }
 
 internal class EfApplicationUserRepository(UserDbContext context) : IApplicationUserRepository
@@ -18,6 +20,11 @@ internal class EfApplicationUserRepository(UserDbContext context) : IApplication
             .SingleOrDefaultAsync(x => x.Email == email);
 
         return existingUser;
+    }
+    
+    public void DeleteCartItems(IEnumerable<CartItem> cartItems)
+    {
+        context.CartItems.RemoveRange(cartItems);
     }
 
     public async Task SaveChangesAsync()

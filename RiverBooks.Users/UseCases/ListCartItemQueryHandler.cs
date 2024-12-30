@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
-using RiverBooks.Books.Contracts;
 using RiverBooks.Users.Data;
 
 namespace RiverBooks.Users.UseCases;

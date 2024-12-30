@@ -58,7 +58,7 @@ Content-Type: application/json
 
 
 ###
-@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUyODc5MjEsImV4cCI6MTczNTI5MTUyMSwibmJmIjoxNzM1Mjg3OTIxfQ.7MBEO7HWRFdB-rufRyAyAGxjgQHvTW4MjEs_5nkpeeA
+@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImJyYWRAdGVzdC5jb20iLCJpYXQiOjE3MzUzMzU0OTYsImV4cCI6MTczNTMzOTA5NiwibmJmIjoxNzM1MzM1NDk2fQ.i455N-KyCPVP9EkIRHsmxCKY5IgOHOB8T6TzUdEX9Mo
 
 POST {{HostAddress}}/cart
 Authorization: Bearer {{token}}
@@ -73,3 +73,21 @@ Content-Type: application/json
 GET {{HostAddress}}/cart
 Authorization: Bearer {{token}}
 Accept: application/json
+
+
+###
+
+GET {{HostAddress}}/orders
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+POST {{HostAddress}}/cart/checkout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "billingAddressId": "a36d8e43-a34d-493d-a43c-d3af4f458944",
+  "shippingAddressId": "b36d8e43-a34d-493d-a43c-d3af4f458944"
+}

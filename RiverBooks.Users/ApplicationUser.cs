@@ -7,7 +7,7 @@ namespace RiverBooks.Users;
 internal class ApplicationUser : IdentityUser
 {
     private readonly List<CartItem> _cartItems = [];
-    public List<CartItem> CartItems => _cartItems;
+    public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
 
     public void AddItemToCart(CartItem cartItem)
     {
@@ -22,5 +22,10 @@ internal class ApplicationUser : IdentityUser
         }
         
         _cartItems.Add(cartItem);
+    }
+
+    public void ClearCart()
+    {
+        _cartItems.Clear();
     }
 }
